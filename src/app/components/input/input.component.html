@@ -1,0 +1,42 @@
+<label class="block text-sm font-medium text-gray-700 mb-1" [for]="name">
+  {{ label }}
+</label>
+
+<div class="relative">
+  <input
+    [id]="name"
+    [name]="name"
+    [type]="type === 'password' ? (showPassword ? 'text' : 'password') : type"
+    [placeholder]="placeholder"
+    class="w-full border-2  rounded-lg p-3 pr-10 placeholder:opacity-50 border-beige-500/50"
+  />
+
+  <button
+    *ngIf="type === 'password'"
+    type="button"
+    (click)="togglePassword()"
+    class="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
+  >
+    <img
+      *ngIf="!showPassword"
+      src="assets/images/icon-show-password.svg"
+      alt="Show Password Icon"
+      aria-label="Show Password Icon"
+      class="size-5"
+    />
+    <img
+      *ngIf="showPassword"
+      src="assets/images/icon-hide-password.svg"
+      alt="Hide Password Icon"
+      aria-label="Hide Password Icon"
+      class="size-5"
+    />
+  </button>
+</div>
+
+<p
+  *ngIf="type === 'password'"
+  class="text-05 text-grey-500 mt-1 flex justify-end"
+>
+  Passwords must be at least 8 characters
+</p>

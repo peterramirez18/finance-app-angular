@@ -27,5 +27,34 @@
 
 body {
   font-family: "Public Sans", sans-serif;
-  background-color: var(--beige-100);
+  background-color: var(--color-beige-100);
+}
+
+/* Text */
+.text-01 {
+  @apply text-[32px] font-bold leading-[120%];
+}
+
+.text-02 {
+  @apply text-[20px] font-bold leading-[120%];
+}
+
+.text-03 {
+  @apply text-[16px] font-bold leading-[150%];
+}
+
+.text-04 {
+  @apply text-[14px] leading-[150%];
+}
+
+.text-04-bold {
+  @apply text-[14px] font-bold leading-[150%];
+}
+
+.text-05 {
+  @apply text-[12px] leading-[150%];
+}
+
+.text-05-bold {
+  @apply text-[12px] font-bold leading-[150%];
 }
