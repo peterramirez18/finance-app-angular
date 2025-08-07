@@ -6,14 +6,14 @@ import { ButtonComponent } from '../../../components/button/button.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-login',
   imports: [
     AuthBannerComponent,
     CardComponent,
     InputComponent,
     ButtonComponent,
-    RouterLink
+    RouterLink,
   ],
-  templateUrl: './register.component.html',
+  templateUrl: './login.component.html',
 })
-export class RegisterComponent {}
+export class LoginComponent {}
