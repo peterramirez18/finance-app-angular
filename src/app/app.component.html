@@ -1,3 +1,8 @@
-<main class="h-screen">
-  <router-outlet />
+<main class="h-screen flex bg-amber-100">
+  <app-sidebar
+    *ngIf="!['/login', '/register'].includes(currentPath)"
+  ></app-sidebar>
+  <div class="flex-1 min-w-0 h-full overflow-auto">
+    <router-outlet></router-outlet>
+  </div>
 </main>

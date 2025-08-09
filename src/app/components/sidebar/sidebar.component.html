@@ -1,0 +1,92 @@
+<aside
+  class="bg-grey-900 h-full py-10 rounded-r-2xl flex flex-col justify-between"
+  [ngClass]="{
+    'w-[80px]': minimized(),
+    'w-[240px]': !minimized(),
+  }"
+>
+  <div
+    [ngClass]="{
+    'mx-auto': minimized(),
+    'pl-5': !minimized(),
+  }"
+  >
+    <img
+      *ngIf="!minimized()"
+      aria-label="Logo Large Image"
+      src="assets/images/logo-large.svg"
+      alt="Logo Large Image"
+      class="h-5 mb-14"
+    />
+    <img
+      *ngIf="minimized()"
+      aria-label="Logo Large Image"
+      src="assets/images/logo-small.svg"
+      alt="Logo Small Image"
+      class="h-5 mb-14"
+    />
+  </div>
+  <nav class="flex-1">
+    <ul>
+      <li
+        [routerLink]="item.route"
+        [ngClass]="{
+          'bg-beige-100 text-grey-900': rla.isActive,
+          'text-gray-200': !rla.isActive,
+          'mr-2': minimized(),
+          'mr-4': !minimized(),
+          'group': !rla.isActive,
+
+        }"
+        *ngFor="let item of sidebarItems"
+        class="rounded-r-lg h-14 flex cursor-pointer group"
+      >
+        <a
+          #rla="routerLinkActive"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="gap-x-4 relative pl-6 py-3 text-04 font-bold flex items-center"
+          [ngClass]="{
+          `before:content-[''] before:w-[3px] before:bg-green before:top-0 before:bottom-0 before:left-0 before:absolute`: rla.isActive,
+          }"
+        >
+          <span [ngClass]="rla.isActive ? 'text-green' : 'text-grey-300'">
+            <ng-container
+              *ngComponentOutlet="iconRegistry[item.icon]"
+            ></ng-container>
+          </span>
+
+          <span
+            [ngClass]="{
+          'text-grey-900': rla.isActive,
+          'hidden': minimized(),
+        }"
+            class="mt-[1.5px] text-grey-300 group-hover:text-white transition-colors duration-500"
+            >{{ item.label }}</span
+          >
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <button
+    (click)="toggle()"
+    class="gap-x-4 relative py-3 text-04 font-bold flex items-center hover:text-white text-grey-300 cursor-pointer"
+  >
+    <img
+      [ngClass]="{
+      'rotate-180 mx-auto' : minimized(),
+      'pl-6' : !minimized(),
+
+    }"
+      src="assets/images/icon-minimize-menu.svg"
+      alt=""
+    />
+
+    <span
+      *ngIf="!minimized()"
+      class="mt-[1.5px] transition-colors duration-500"
+    >
+      Minimize Menu
+    </span>
+  </button>
+</aside>
