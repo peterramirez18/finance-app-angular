@@ -1,9 +1,6 @@
 <aside
-  class="bg-grey-900 h-full py-10 rounded-r-2xl flex flex-col justify-between"
-  [ngClass]="{
-    'w-[80px]': minimized(),
-    'w-[240px]': !minimized(),
-  }"
+  class="bg-grey-900 h-full py-10 rounded-r-2xl flex flex-col justify-between transition-all"
+  [@toggleWidth]="minimized() ? 'collapsed' : 'expanded'"
 >
   <div
     [ngClass]="{
@@ -39,7 +36,7 @@
 
         }"
         *ngFor="let item of sidebarItems"
-        class="rounded-r-lg h-14 flex cursor-pointer group"
+        class="rounded-r-lg h-13 flex cursor-pointer group"
       >
         <a
           #rla="routerLinkActive"
@@ -47,10 +44,13 @@
           [routerLinkActiveOptions]="{ exact: true }"
           class="gap-x-4 relative pl-6 py-3 text-04 font-bold flex items-center"
           [ngClass]="{
-          `before:content-[''] before:w-[3px] before:bg-green before:top-0 before:bottom-0 before:left-0 before:absolute`: rla.isActive,
+                      `before:content-[''] before:w-[3px] before:bg-green before:top-0 before:bottom-0 before:left-0 before:absolute`: rla.isActive,
           }"
         >
-          <span [ngClass]="rla.isActive ? 'text-green' : 'text-grey-300'">
+          <span
+            class="ml-1.5"
+            [ngClass]="rla.isActive ? 'text-green' : 'text-grey-300'"
+          >
             <ng-container
               *ngComponentOutlet="iconRegistry[item.icon]"
             ></ng-container>
@@ -61,9 +61,10 @@
           'text-grey-900': rla.isActive,
           'hidden': minimized(),
         }"
-            class="mt-[1.5px] text-grey-300 group-hover:text-white transition-colors duration-500"
-            >{{ item.label }}</span
+            class="mt-[1.5px] text-grey-300 group-hover:text-white transition-colors duration-500 whitespace-nowrap"
           >
+            {{ item.label }}
+          </span>
         </a>
       </li>
     </ul>
@@ -76,15 +77,15 @@
       [ngClass]="{
       'rotate-180 mx-auto' : minimized(),
       'pl-6' : !minimized(),
-
     }"
       src="assets/images/icon-minimize-menu.svg"
       alt=""
+      class="transition-all duration-300"
     />
 
     <span
       *ngIf="!minimized()"
-      class="mt-[1.5px] transition-colors duration-500"
+      class="mt-[1.5px] transition-colors duration-500 whitespace-nowrap"
     >
       Minimize Menu
     </span>
