@@ -3,11 +3,12 @@ import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NgIf } from '@angular/common';
+import { SidebarMobileComponent } from "./components/sidebar-mobile/sidebar-mobile.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SidebarComponent, NgIf],
+  imports: [RouterOutlet, SidebarComponent, NgIf, SidebarMobileComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {

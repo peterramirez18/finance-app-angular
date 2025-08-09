@@ -1,0 +1,44 @@
+<aside class="bg-grey-900 rounded-t-lg fixed bottom-0 left-0 right-0 pt-2">
+  <nav>
+    <ul class="flex justify-around">
+      <li
+        [routerLink]="item.route"
+        [ngClass]="{
+          'bg-beige-100 text-grey-900': rla.isActive,
+          'text-gray-200': !rla.isActive,
+          'group': !rla.isActive,
+
+        }"
+        *ngFor="let item of sidebarItems"
+        class="rounded-t-lg flex cursor-pointer group"
+      >
+        <a
+          #rla="routerLinkActive"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="gap-x-4 relative text-05 font-bold flex flex-col p-3 gap-y-2 items-center justify-center min-w-18 min-h-14"
+          [ngClass]="{
+                      `before:content-[''] before:h-[6px] before:bg-green before:right-0 before:bottom-0 before:left-0 before:absolute`: rla.isActive,
+          }"
+        >
+          <span
+            [ngClass]="rla.isActive ? 'text-green' : 'text-grey-300'"
+          >
+            <ng-container
+              *ngComponentOutlet="iconRegistry[item.icon]"
+            ></ng-container>
+          </span>
+
+          <span
+            [ngClass]="{
+          'text-grey-900': rla.isActive,
+        }"
+            class="mt-[1.5px] hidden md:block text-grey-300 group-hover:text-white transition-colors duration-500 whitespace-nowrap"
+          >
+            {{ item.label }}
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>

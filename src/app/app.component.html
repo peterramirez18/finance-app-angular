@@ -2,6 +2,9 @@
   <app-sidebar
     *ngIf="!['/login', '/register'].includes(currentPath)"
   ></app-sidebar>
+  <app-sidebar-mobile
+    *ngIf="!['/login', '/register'].includes(currentPath)"
+  ></app-sidebar-mobile>
   <div class="flex-1 min-w-0 h-full overflow-auto">
     <router-outlet></router-outlet>
   </div>
